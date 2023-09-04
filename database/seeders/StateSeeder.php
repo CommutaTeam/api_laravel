@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class StateTableSeeder extends Seeder
+class StateSeeder extends Seeder
 {
 
     /**
@@ -12,7 +13,7 @@ class StateTableSeeder extends Seeder
      */
     public function run(): void
     {
-        \DB::table('states')->insert(array (
+        DB::table('states')->insert(array (
             0 =>
             array (
                 'id' => '1',

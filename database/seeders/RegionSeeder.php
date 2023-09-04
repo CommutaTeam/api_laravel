@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class RegionTableSeeder extends Seeder
+class RegionSeeder extends Seeder
 {
 
     /**
@@ -12,7 +13,7 @@ class RegionTableSeeder extends Seeder
      */
     public function run(): void
     {
-        \DB::table('regions')->insert(array (
+        DB::table('regions')->insert(array (
             0 =>
             array (
                 'id' => '1',
