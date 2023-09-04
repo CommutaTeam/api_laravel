@@ -37,6 +37,7 @@ return new class extends Migration
             $table->foreignId('area_id')->nullable()->constrained();
             $table->foreignId('subarea_id')->constrained();
             $table->foreignId('title_id')->constrained();
+            $table->foreignId('organization_id')->constrained();
         });
     }
 
