@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('genre', ['M', 'F']);
-            $table->string('phone');
+            $table->string('phone')->unique();
             $table->text('bio');
             $table->rememberToken();
             $table->timestamps();
@@ -33,6 +33,9 @@ return new class extends Migration
             $table->foreign('region_id')->references('id')->on('regions');
             $table->foreign('state_id')->references('id')->on('states');
             $table->foreign('city_id')->references('id')->on('cities');
+
+            $table->foreignId('area_id')->nullable()->constrained();
+            $table->foreignId('subarea_id')->constrained();
         });
     }
 
