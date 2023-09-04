@@ -13,12 +13,26 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('genre', ['M', 'F']);
+            $table->string('phone');
+            $table->text('bio');
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('region_id')->unsigned();
+            $table->integer('state_id')->unsigned();
+            $table->integer('city_id')->unsigned();
+
+            $table->foreign('region_id')->references('id')->on('regions');
+            $table->foreign('state_id')->references('id')->on('states');
+            $table->foreign('city_id')->references('id')->on('cities');
         });
     }
 
