@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AreaSeeder::class);
         $this->call(SubareaSeeder::class);
         $this->call(TitleSeeder::class);
+        $this->call(SphereSeeder::class);
     }
 }
