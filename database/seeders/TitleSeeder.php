@@ -14,8 +14,8 @@ class TitleSeeder extends Seeder
     public function run(): void
     {
         DB::table('titles')->insert([
-            ['name' => 'Professor EBTT'],
-            ['name' => 'Professor do Magistério Superior'],
+            ['name' => 'Professor EBTT', 'has_specialization' => true],
+            ['name' => 'Professor do Magistério Superior', 'has_specialization' => true],
         ]);
     }
 }

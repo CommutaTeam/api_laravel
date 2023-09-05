@@ -35,7 +35,7 @@ return new class extends Migration
             $table->foreign('city_id')->references('id')->on('cities');
 
             $table->foreignId('area_id')->nullable()->constrained();
-            $table->foreignId('subarea_id')->constrained();
+            $table->foreignId('subarea_id')->nullable()->constrained();
             $table->foreignId('title_id')->constrained();
             $table->foreignId('organization_id')->constrained();
         });
