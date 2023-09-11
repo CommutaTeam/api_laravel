@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\Genre;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -69,9 +70,15 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): Response|JsonResponse
     {
-        //
+        $user = User::find($id);
+
+        if ($user == null) {
+            return response(status: Response::HTTP_NOT_FOUND);
+        }
+
+        return response()->json($user);
     }
 
     /**
@@ -87,6 +94,13 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = auth()->user();
+
+        if ($user->id != $id) {
+            return response(status: Response::HTTP_FORBIDDEN);
+        }
+
+        $user->delete();
+        return response(status: Response::HTTP_NO_CONTENT);
     }
 }
