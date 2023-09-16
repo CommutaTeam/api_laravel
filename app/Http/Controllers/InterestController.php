@@ -23,17 +23,12 @@ class InterestController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'user_id' => ['required', 'numeric', 'exists:users,id'],
             'city_id' => ['required', 'numeric', 'exists:cities,id'],
             'organization_id' => ['required', 'numeric', 'exists:organizations,id'],
         ]);
 
-        if (auth()->id() != $data['user_id']) {
-            return response(status: Response::HTTP_FORBIDDEN);
-        }
-
         $interest = Interest::create([
-            'user_id' => $data['user_id'],
+            'user_id' => auth()->id(),
             'city_id' => $data['city_id'],
             'organization_id' => $data['organization_id'],
         ]);
