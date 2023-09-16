@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Opportunity extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'interesting_user_id',
+    ];
 }
