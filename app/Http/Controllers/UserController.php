@@ -32,7 +32,7 @@ class UserController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'genre' => ['required', new Enum(Genre::class)],
-            'phone' => ['nullable', 'numeric'],
+            'phone' => ['nullable', 'numeric', 'unique:' . User::class],
             'bio' => ['nullable', 'string', 'max:500'],
             'region_id' => ['required', 'numeric'],
             'state_id' => ['required', 'numeric'],
