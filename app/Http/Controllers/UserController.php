@@ -94,13 +94,11 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = auth()->user();
-
-        if ($user->id != $id) {
+        if (auth()->id() != $id) {
             return response(status: Response::HTTP_FORBIDDEN);
         }
 
-        $user->delete();
+        auth()->user()->delete();
         return response(status: Response::HTTP_NO_CONTENT);
     }
 }
