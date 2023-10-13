@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InterestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
     Route::apiResource('interests', InterestController::class);
+
+    Route::post('/contacts', [ContactController::class, 'store']);
+    Route::get('/contacts', [ContactController::class, 'index']);
+    Route::get('/contacts/{id}', [ContactController::class, 'show']);
+    Route::delete('/contacts/{id}', [ContactController::class, 'destroy']);
 });
