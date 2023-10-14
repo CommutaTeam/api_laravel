@@ -13,8 +13,16 @@ class InterestController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    { 
+        
+        $interest = Interest::where(['user_id' => auth()->id()])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        if ($interest == null) {
+            return response(status: Response::HTTP_NOT_FOUND);
+        }
+        return response()->json($interest);
     }
 
     /**
@@ -60,6 +68,29 @@ class InterestController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $interest = Interest::find($id);
+
+        if ($interest == null) {
+            return response(status: Response::HTTP_NOT_FOUND);
+        }
+
+        $userId = auth()->id();
+
+        if ($userId != $interest->user_id) {
+            return response(status: Response::HTTP_FORBIDDEN);
+        }
+
+
+        $data = $request->validate([
+            'city_id' => ['required', 'numeric', 'exists:cities,id'],
+        ]);
+        $interest->update(['city_id' => $data['city_id']]);
+
+        if ($interest == null) {
+            return response(status: Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return response(status: Response::HTTP_NO_CONTENT);
     }
 
     /**
