@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InterestController;
+use App\Http\Controllers\OpportunityController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/contacts', [ContactController::class, 'index']);
     Route::get('/contacts/{id}', [ContactController::class, 'show']);
     Route::delete('/contacts/{id}', [ContactController::class, 'destroy']);
+
+    Route::get('/opportunities', [OpportunityController::class, 'index']);
+    Route::get('/opportunities/{id}', [OpportunityController::class, 'show']);
 });
