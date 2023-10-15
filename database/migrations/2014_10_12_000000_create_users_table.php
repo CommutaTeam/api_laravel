@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('bio');
             $table->rememberToken();
             $table->timestamps();
+            $table->boolean('active')->default(true);
         });
 
         Schema::table('users', function (Blueprint $table) {
