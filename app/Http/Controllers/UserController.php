@@ -87,6 +87,51 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $user = User::find($id);
+
+        if ($user == null) {
+            return response(status: Response::HTTP_NOT_FOUND);
+        }
+
+        $data = $request->validate([
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'phone' => ['nullable', 'numeric', 'unique:' . User::class],
+            'region_id' => ['nullable', 'numeric'],
+            'state_id' => ['nullable', 'numeric'],
+            'city_id' => ['nullable', 'numeric'],
+            'area_id' => ['nullable', 'numeric'],
+            'subarea_id' => ['nullable', 'numeric'],
+            'title_id' => ['nullable', 'numeric'],
+            'organization_id' => ['nullable', 'numeric'],
+        ]);
+
+        if(!empty($data['email'])){
+            $user->update([
+                'email' => $data['email'],
+            ]);
+        }
+
+        if(!empty($data['phone'])){
+            $user->update([
+                'phone' => $data['phone'],
+            ]);
+        }
+
+        $user->update([
+            'region_id' => $data['region_id'] ?? $user->region_id,
+            'state_id' => $data['state_id'] ?? $user->state_id,
+            'city_id' => $data['city_id'] ?? $user->city_id,
+            'area_id' => $data['area_id'] ?? $user->area_id,
+            'subarea_id' => $data['subarea_id'] ?? $user->subarea_id,
+            'title_id' => $data['title_id'] ?? $user->title_id,
+            'organization_id' => $data['organization_id'] ?? $user->organization_id,
+        ]);
+
+        if ($user == null) {
+            return response(status: Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return response(status: Response::HTTP_OK);
     }
 
     /**

@@ -90,7 +90,7 @@ class InterestController extends Controller
             return response(status: Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        return response(status: Response::HTTP_NO_CONTENT);
+        return response(status: Response::HTTP_OK);
     }
 
     /**

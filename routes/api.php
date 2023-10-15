@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logOut']);
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
     Route::apiResource('interests', InterestController::class);
 
     Route::post('/contacts', [ContactController::class, 'store']);

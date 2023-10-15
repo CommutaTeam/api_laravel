@@ -180,6 +180,44 @@
 					"response": []
 				},
 				{
+					"name": "users update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pedro@email.com\",\n    \"phone\": \"5573981829000\",\n    \"region_id\": 2,\n    \"state_id\": 5,\n    \"city_id\": 1953,\n    \"area_id\": 1,\n    \"subarea_id\": 2,\n    \"title_id\": 1,\n    \"organization_id\": 5\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/users/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "users show",
 					"request": {
 						"auth": {
@@ -343,7 +381,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/interests",
+							"raw": "http://127.0.0.1:8000/api/interests/1",
 							"protocol": "http",
 							"host": [
 								"127",
