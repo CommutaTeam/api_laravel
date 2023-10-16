@@ -143,11 +143,7 @@ class UserController extends Controller
            return response(status: Response::HTTP_FORBIDDEN);
         }
 
-        $user = User::find($id);
-
-        $user->update([
-           'active' => 0,
-        ]);
+        //auth()->user()->delete();
 
         return response(status: Response::HTTP_NO_CONTENT);
     }

@@ -13,8 +13,8 @@ class OpportunityController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->id();
-
+        $user_id = auth()->id();  
+           
         $opportunities = Opportunity::where('user_id', $user_id)
             ->join('users', 'opportunities.interesting_user_id', '=', 'users.id')
             ->join('cities', 'users.city_id', '=', 'cities.id')
