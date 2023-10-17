@@ -142,8 +142,10 @@ class UserController extends Controller
         if (auth()->id() != $id) {
            return response(status: Response::HTTP_FORBIDDEN);
         }
+        
+        $user = User::find($id);
 
-        //auth()->user()->delete();
+        $user->delete();
 
         return response(status: Response::HTTP_NO_CONTENT);
     }
