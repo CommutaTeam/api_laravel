@@ -15,7 +15,15 @@ class ContactController extends Controller
     {
         $user_id = auth()->id();
         $contacts = Contact::where('first_user_id', $user_id)
-            ->orderBy('created_at', 'desc')
+            ->join('users', 'contacts.second_user_id', '=', 'users.id')
+            ->join('organizations', 'users.organization_id', 'organizations.id')
+            ->join('cities', 'users.city_id', '=', 'cities.id')
+            ->orderBy('contacts.created_at', 'desc')
+            ->select('contacts.id as contact_id',
+                'users.first_name as contact_name',
+                'organizations.name as contact_organization_name',
+                'organizations.acronym as contact_organization_acronym',
+                'cities.title as city_name')
             ->get();
 
         return response()->json($contacts);
@@ -48,7 +56,17 @@ class ContactController extends Controller
      */
     public function show(string $id)
     {
-        $contact = Contact::find($id);
+        $contact = Contact::where('contacts.id', $id)
+            ->join('users', 'contacts.second_user_id', '=', 'users.id')
+            ->join('organizations', 'users.organization_id', 'organizations.id')
+            ->join('cities', 'users.city_id', '=', 'cities.id')
+            ->orderBy('contacts.created_at', 'desc')
+            ->select('contacts.id as contact_id',
+                'users.first_name as contact_name',
+                'organizations.name as contact_organization_name',
+                'organizations.acronym as contact_organization_acronym',
+                'cities.title as city_name')
+            ->first();
 
         if ($contact == null) {
             return response(status: Response::HTTP_NOT_FOUND);
