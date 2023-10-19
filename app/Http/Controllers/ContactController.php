@@ -60,7 +60,6 @@ class ContactController extends Controller
             ->join('users', 'contacts.second_user_id', '=', 'users.id')
             ->join('organizations', 'users.organization_id', 'organizations.id')
             ->join('cities', 'users.city_id', '=', 'cities.id')
-            ->orderBy('contacts.created_at', 'desc')
             ->select('contacts.id as contact_id',
                 'users.first_name as contact_name',
                 'organizations.name as contact_organization_name',
