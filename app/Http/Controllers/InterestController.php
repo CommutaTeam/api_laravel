@@ -13,10 +13,21 @@ class InterestController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    { 
-        
+    {
         $interest = Interest::where(['user_id' => auth()->id()])
-            ->orderBy('created_at', 'desc')
+            ->join('users', 'interests.user_id', '=', 'users.id')
+            ->join('areas', 'users.area_id', '=', 'areas.id')
+            ->join('subareas', 'users.subarea_id', '=', 'subareas.id')
+            ->join('titles', 'users.title_id', '=', 'titles.id')
+            ->join('organizations', 'interests.organization_id', '=', 'organizations.id')
+            ->join('cities', 'interests.city_id', '=', 'cities.id')
+            ->orderBy('interests.created_at', 'asc')
+            ->select('areas.name as area_name',
+                'subareas.name as subarea_name',
+                'titles.name as title_name',
+                'organizations.name as contact_organization_name',
+                'organizations.acronym as contact_organization_acronym',
+                'cities.title as interest_city_name')
             ->get();
 
         if ($interest == null) {
