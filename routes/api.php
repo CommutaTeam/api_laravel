@@ -5,6 +5,7 @@ use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InterestController;
 use App\Http\Controllers\OpportunityController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\StatesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -43,4 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/cities/{state_id}', [CitiesController::class, 'listPerUF']);
 
     Route::get('/states', [StatesController::class, 'index']);
+
+    Route::get('/organizations', [OrganizationController::class, 'index']);
+    Route::get('/organizations/{id}', [OrganizationController::class, 'show']);
 });
