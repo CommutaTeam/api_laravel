@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Enum;
 use Illuminate\Validation\Rules\Password;
-
+use Exception;
 class UserController extends Controller
 {
     /**
@@ -19,6 +19,13 @@ class UserController extends Controller
     public function index()
     {
         //
+    }
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function login()
+    {
+        printf("Login");
     }
 
     /**
@@ -59,7 +66,15 @@ class UserController extends Controller
             'title_id' => $data['title_id'],
             'organization_id' => $data['organization_id'],
         ]);
-
+        
+        try{
+            printf("Criando usuário");
+            $user->sendEmailVerificationNotification();
+        }catch(Exception $e)
+        {
+            printf("Erro");
+            $user->delete();
+        }
         if ($user == null) {
             return response(status: Response::HTTP_INTERNAL_SERVER_ERROR);
         }
