@@ -9,10 +9,16 @@ class OrganizationController extends Controller
 {
     public function index(Request $request)
     {
-        $organizations = Organization::select('id as organization_id',
+        $query = Organization::select('id as organization_id',
                 'name as organization_name',
-                'acronym as organization_acronym')
-            ->get();
+                'acronym as organization_acronym');
+
+        if ($request->has('city_id'))
+        {
+            //TO DO: listar instituições presentes em uma determinada cidade
+        }
+
+        $organizations = $query->get();
 
         return response()->json($organizations);
     }
