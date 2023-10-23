@@ -7,6 +7,7 @@ use App\Http\Controllers\InterestController;
 use App\Http\Controllers\OpportunityController;
 use App\Http\Controllers\StatesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AreasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,4 +44,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/cities/{state_id}', [CitiesController::class, 'listPerUF']);
 
     Route::get('/states', [StatesController::class, 'index']);
+
+    Route::get('/areas', [AreasController::class, 'index']);
 });
