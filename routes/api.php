@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InterestController;
 use App\Http\Controllers\OpportunityController;
@@ -36,4 +37,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/opportunities', [OpportunityController::class, 'index']);
     Route::get('/opportunities/{id}', [OpportunityController::class, 'show']);
+
+    Route::get('/cities', [CitiesController::class, 'index']);
+    Route::get('/cities/{state_id}', [CitiesController::class, 'listPerUF']);
 });
