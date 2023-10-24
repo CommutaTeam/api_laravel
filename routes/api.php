@@ -1,10 +1,15 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InterestController;
 use App\Http\Controllers\OpportunityController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\StatesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AreasController;
+use App\Http\Controllers\SubareasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -50,4 +55,16 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/opportunities', [OpportunityController::class, 'index']);
     Route::get('/opportunities/{id}', [OpportunityController::class, 'show']);
+
+    Route::get('/cities', [CitiesController::class, 'index']);
+    Route::get('/cities/{state_id}', [CitiesController::class, 'listPerUF']);
+
+    Route::get('/states', [StatesController::class, 'index']);
+
+    Route::get('/organizations', [OrganizationController::class, 'index']);
+    Route::get('/organizations/{id}', [OrganizationController::class, 'show']);
+
+    Route::get('/areas', [AreasController::class, 'index']);
+
+    Route::get('/subareas', [SubareasController::class, 'index']);
 });
