@@ -713,6 +713,52 @@
 				}
 			]
 		
+		},
+		{
+			"name": "subareas",
+			"item": [
+				{
+			
+					"name": "subareas index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/subareas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"subareas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		
 		}
 
 	]

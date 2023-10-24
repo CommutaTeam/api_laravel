@@ -9,6 +9,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\StatesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AreasController;
+use App\Http\Controllers\SubareasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,4 +51,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/organizations/{id}', [OrganizationController::class, 'show']);
 
     Route::get('/areas', [AreasController::class, 'index']);
+
+    Route::get('/subareas', [SubareasController::class, 'index']);
 });
