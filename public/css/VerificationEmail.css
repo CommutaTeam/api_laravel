@@ -1,0 +1,147 @@
+/* Estilos para o contêiner principal */
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Estilos para a imagem */
+  img {
+    width: 210px;
+    height: 43px;
+    position: absolute;
+    left: 195px;
+    top: 22px;
+  }
+  
+  /* Estilos para os elementos div */
+  div {
+    position: absolute;
+  }
+  
+  /* Estilos para o contêiner branco */
+  #white-container {
+    width: 516px;
+    height: 516px;
+    background: white;
+    border-radius: 9px;
+    left: 42px;
+    top: 86px;
+  }
+  
+  /* Estilos para o círculo roxo */
+  #purple-circle {
+    width: 105px;
+    height: 105px;
+    border-radius: 9999px;
+    border: 3px #4B3EFF solid;
+    left: 247px;
+    top: 132px;
+  }
+  
+  /* Estilos para o texto de boas-vindas */
+  #welcome-text {
+    text-align: center;
+    color: black;
+    font-size: 24px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+    left: 115px;
+    top: 259px;
+  }
+  
+  /* Estilos para o texto de verificação */
+  #verification-text {
+    width: 430px;
+    height: 27px;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 500;
+    line-height: 16.46px;
+    word-wrap: break-word;
+    left: 85px;
+    top: 367px;
+  }
+  
+  /* Estilos para o texto de informação */
+  #info-text {
+    width: 430px;
+    height: 27px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.50);
+    font-size: 14px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 500;
+    line-height: 14.41px;
+    word-wrap: break-word;
+    left: 84px;
+    top: 516px;
+  }
+  
+  /* Estilos para o título "Verifique seu E-mail" */
+  #verify-title {
+    text-align: center;
+    color: black;
+    font-size: 32px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    word-wrap: break-word;
+    left: 150px;
+    top: 284px;
+  }
+  
+  /* Estilos para o código de verificação */
+  #verification-code {
+    text-align: center;
+    color: #4B3EFF;
+    font-size: 28px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    word-wrap: break-word;
+    left: 191px;
+    top: 410px;
+  }
+  
+  /* Estilos para a linha horizontal */
+  #horizontal-line {
+    width: 307px;
+    height: 0.50px;
+    position: absolute;
+    border: 0.50px rgba(0, 0, 0, 0.50) solid;
+    left: 146px;
+    top: 502px;
+  }
+  
+  /* Estilos para o botão de download */
+  #download-button {
+    width: 160px;
+    height: 40px;
+    background: #4B3EFF;
+    border-radius: 5px;
+    left: 220px;
+    top: 653px;
+  }
+  
+  /* Estilos para o ícone do botão de download */
+  #download-icon {
+    width: 18px;
+    height: 20.65px;
+    background: white;
+    left: 237px;
+    top: 663px;
+  }
+  
+  /* Estilos para o texto do botão de download */
+  #download-text {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    font-family: 'Product Sans', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    left: 204px;
+    top: 623px;
+  }
+  
