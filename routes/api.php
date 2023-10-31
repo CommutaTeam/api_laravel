@@ -26,19 +26,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 */
 
 Route::post('/users', [UserController::class, 'store']);
-//Route::post('/login', [AuthController::class, 'logIn']);
-Route::get('/login', [AuthController::class])->name('user.login');
 
-//Route::get('email/verify/{id}', [VerificationController::class, 'verify']);
-//Route::get('email/resend', [VerificationController::class, 'resend']);
+Route::post('/login', [AuthController::class, 'logIn']);
 
-Route::get('email/verify/{id}', [VerificationController::class])->name('verification.verify'); // Make sure to keep this as your route name
-Route::get('email/resend', [VerificationController::class])->name('verification.resend');
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    //$request->fulfill();
- 
-    return redirect('https://www.instagram.com/commuta_project/');
-})->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);

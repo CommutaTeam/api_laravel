@@ -10,6 +10,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Enum;
 use Illuminate\Validation\Rules\Password;
+use App\Mail\EmailVerification;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Exception;
 class UserController extends Controller
 {
@@ -68,11 +71,10 @@ class UserController extends Controller
         ]);
         
         try{
-            printf("Criando usuário");
-            $user->sendEmailVerificationNotification();
+            $password = Str::random(12);
+            Mail::to($user->email)->send(new EmailVerification($user,$password));
         }catch(Exception $e)
         {
-            printf("Erro");
             $user->delete();
         }
         if ($user == null) {
