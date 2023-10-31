@@ -28,6 +28,14 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::post('/users', [UserController::class, 'store']);
 
 Route::post('/login', [AuthController::class, 'logIn']);
+Route::get('/cities', [CitiesController::class, 'index']);
+Route::get('/cities/{state_id}', [CitiesController::class, 'listPerUF']);
+
+Route::get('/states', [StatesController::class, 'index']);
+Route::get('/organizations', [OrganizationController::class, 'index']);
+Route::get('/organizations/{id}', [OrganizationController::class, 'show']);
+Route::get('/areas', [AreasController::class, 'index']);
+Route::get('/subareas', [SubareasController::class, 'index']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -45,16 +53,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/opportunities', [OpportunityController::class, 'index']);
     Route::get('/opportunities/{id}', [OpportunityController::class, 'show']);
-
-    Route::get('/cities', [CitiesController::class, 'index']);
-    Route::get('/cities/{state_id}', [CitiesController::class, 'listPerUF']);
-
-    Route::get('/states', [StatesController::class, 'index']);
-
-    Route::get('/organizations', [OrganizationController::class, 'index']);
-    Route::get('/organizations/{id}', [OrganizationController::class, 'show']);
-
-    Route::get('/areas', [AreasController::class, 'index']);
-
-    Route::get('/subareas', [SubareasController::class, 'index']);
 });
