@@ -11,8 +11,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Enum;
 use Illuminate\Validation\Rules\Password;
 use App\Mail\EmailVerification;
+use App\Http\Controllers\EmailCodeController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+
 use Exception;
 class UserController extends Controller
 {
@@ -69,16 +71,19 @@ class UserController extends Controller
             'title_id' => $data['title_id'],
             'organization_id' => $data['organization_id'],
         ]);
-        
-        try{
-            $password = Str::random(12);
-            Mail::to($user->email)->send(new EmailVerification($user,$password));
-        }catch(Exception $e)
-        {
-            $user->delete();
-        }
+
         if ($user == null) {
             return response(status: Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        
+        try{
+
+            $emailController = new EmailCodeController; 
+            $emailController->sendCode($user->id);
+
+        }catch(Exception $exception)
+        {
+            return response($exception, status: Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         return response(status: Response::HTTP_CREATED);

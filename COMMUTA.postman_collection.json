@@ -891,6 +891,51 @@
 				}
 			]
 		
+		},
+		{
+			"name": "email",
+			"item": [
+				{
+					"name": "emails authorize",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/emails/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		
 		}
 
 	]

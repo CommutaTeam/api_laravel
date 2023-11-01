@@ -33,6 +33,7 @@ class User extends Authenticatable
         'subarea_id',
         'title_id',
         'organization_id',
+        'email_verified_at',
     ];
 
     /**

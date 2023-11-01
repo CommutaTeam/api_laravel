@@ -10,6 +10,7 @@ use App\Http\Controllers\StatesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AreasController;
 use App\Http\Controllers\SubareasController;
+use App\Http\Controllers\EmailCodeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -38,6 +39,7 @@ Route::get('/areas', [AreasController::class, 'index']);
 Route::get('/subareas', [SubareasController::class, 'index']);
 
 
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logOut']);
@@ -53,4 +55,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/opportunities', [OpportunityController::class, 'index']);
     Route::get('/opportunities/{id}', [OpportunityController::class, 'show']);
+
+    Route::post('/emails/{code}', [EmailCodeController::class, 'authorizeEmail']);
 });
