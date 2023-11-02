@@ -57,4 +57,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/opportunities/{id}', [OpportunityController::class, 'show']);
 
     Route::post('/emails/{code}', [EmailCodeController::class, 'authorizeEmail']);
+    Route::post('/emails', [EmailCodeController::class, 'resendCode']);
 });

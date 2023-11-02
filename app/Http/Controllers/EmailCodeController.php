@@ -20,6 +20,13 @@ class EmailCodeController extends Controller
      */
     public function store(int $id)
     {
+        $emailCode =  EmailCode::where('user_id', $id)->get()->first();
+        
+        if($emailCode)
+        {
+            $emailCode->delete();
+        }
+
         $code = Str::random(12);
 
         EmailCode::create([
@@ -88,12 +95,32 @@ class EmailCodeController extends Controller
             $user->update([
                 'email_verified_at' => Carbon::now(),
             ]);
+            $emailCode->delete();
             return response(status: Response::HTTP_OK);
         }
 
         return response("Código inválido.", status: Response::HTTP_BAD_REQUEST);
 
     }
+
+    public function resendCode()
+    {
+        try{
+
+            $id = auth()->id();
+
+            $user = User::find($id);
+
+            $code = $this->store($id);
+
+            Mail::to($user->email)->send(new EmailVerification($user, $code));
+
+        }catch(Exception)
+        {
+            return response("Erro ao enviar email.", status: Response::HTTP_BAD_REQUEST);
+        }
+    }
+
     public function sendCode(int $id)
     {
         $code = $this->store($id);
@@ -104,10 +131,9 @@ class EmailCodeController extends Controller
 
             Mail::to($user->email)->send(new EmailVerification($user, $code));
 
-        }catch(Exception $ex)
+        }catch(Exception)
         {
-            throw new Exception($ex);
-            //throw new Exception("Erro ao enviar email.");
+            throw new Exception("Erro ao enviar email.");
         }
         
     }
