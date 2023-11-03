@@ -27,8 +27,8 @@ class EmailCodeController extends Controller
             $emailCode->delete();
         }
 
-        $code = Str::random(12);
-
+        $code = Str::random(6);
+        print($code);
         EmailCode::create([
             'user_id' => $id,
             'code' => $code
@@ -78,6 +78,11 @@ class EmailCodeController extends Controller
 
         $user = User::find(auth()->id());
 
+        if($user->hasVerifiedEmail())
+        {
+            return response("Email já verificado.", status: Response::HTTP_BAD_REQUEST);
+        }
+        
         $emailCode = EmailCode::where('user_id', $user->id)->get()->first();
         
         $isValid = $this->validadeCode($emailCode);
@@ -92,9 +97,7 @@ class EmailCodeController extends Controller
 
         if($emailCode->code == $code)
         {
-            $user->update([
-                'email_verified_at' => Carbon::now(),
-            ]);
+            $user->markEmailAsVerified();
             $emailCode->delete();
             return response(status: Response::HTTP_OK);
         }
@@ -126,7 +129,7 @@ class EmailCodeController extends Controller
         $code = $this->store($id);
 
         try{
-
+            
             $user = User::find($id);
 
             Mail::to($user->email)->send(new EmailVerification($user, $code));

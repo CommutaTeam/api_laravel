@@ -10,10 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Enum;
 use Illuminate\Validation\Rules\Password;
-use App\Mail\EmailVerification;
 use App\Http\Controllers\EmailCodeController;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 
 use Exception;
 class UserController extends Controller
